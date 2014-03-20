@@ -13,6 +13,9 @@ TOOLS_CFLAGS	:= -Wstrict-prototypes -Wshadow -Wpointer-arith -Wcast-qual \
 		   -Wcast-align -Wwrite-strings -Wnested-externs -Winline \
 		   -W -Wundef -Wmissing-prototypes -Iinclude
 TOOLS_LDFLAGS	:= -Llib -li2c
+ifeq ($(TOOLS_USE_STATIC_LIB), 1)
+	TOOLS_LDFLAGS	:= -Wl,-Bstatic $(TOOLS_LDFLAGS) -Wl,-Bdynamic
+endif
 
 TOOLS_TARGETS	:= i2cdetect i2cdump i2cset i2cget
 

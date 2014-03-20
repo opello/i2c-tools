@@ -35,7 +35,11 @@ CFLAGS		?= -O2
 CFLAGS		+= -Wall
 SOCFLAGS	:= -fpic -D_REENTRANT $(CFLAGS)
 
-BUILD_STATIC_LIB ?= 1
+BUILD_STATIC_LIB	?= 1
+TOOLS_USE_STATIC_LIB	?= 0
+ifeq ($(TOOLS_USE_STATIC_LIB),1)
+	override BUILD_STATIC_LIB	:= 1
+endif
 
 KERNELVERSION	:= $(shell uname -r)
 
